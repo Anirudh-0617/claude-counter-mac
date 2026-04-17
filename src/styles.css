@@ -1,0 +1,203 @@
+/* ── CSS Variables ──────────────────────────────────────────────────────── */
+:root {
+  --cc-blue:    #3b82f6;
+  --cc-orange:  #f59e0b;
+  --cc-red:     #ef4444;
+  --cc-green:   #10b981;
+  --cc-track:   rgba(120,120,130,0.20);
+  --cc-surface: rgba(255,255,255,0.82);
+  --cc-border:  rgba(0,0,0,0.10);
+  --cc-text:    #1c1c1e;
+  --cc-muted:   #6e6e73;
+  --cc-sep:     rgba(0,0,0,0.12);
+}
+
+.dark {
+  --cc-surface: rgba(30,30,35,0.85);
+  --cc-border:  rgba(255,255,255,0.10);
+  --cc-text:    #f5f5f7;
+  --cc-muted:   #98989d;
+  --cc-sep:     rgba(255,255,255,0.10);
+  --cc-track:   rgba(255,255,255,0.15);
+}
+
+/* ── Header pill ────────────────────────────────────────────────────────── */
+.cc-header {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+  user-select: none;
+}
+
+.cc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px 3px 5px;
+  background: var(--cc-surface);
+  border: 1px solid var(--cc-border);
+  border-radius: 999px;
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  cursor: default;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.cc-pill:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.cc-ring {
+  flex-shrink: 0;
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.cc-ring circle:last-child {
+  transition: stroke-dashoffset 0.6s ease, stroke 0.4s ease;
+}
+
+.cc-pill-text {
+  font-family: -apple-system, "SF Pro Text", "Helvetica Neue", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cc-text);
+  letter-spacing: -0.01em;
+}
+
+.cc-pill-sep {
+  font-size: 11px;
+  color: var(--cc-muted);
+  margin: 0 1px;
+}
+
+.cc-pill-cache {
+  font-family: -apple-system, "SF Pro Text", "Helvetica Neue", sans-serif;
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--cc-muted);
+}
+
+/* ── Usage row ──────────────────────────────────────────────────────────── */
+.cc-usage-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 4px;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.cc-usage-row:hover {
+  background: rgba(120,120,130,0.07);
+}
+
+.cc-usage-placeholder {
+  font-family: -apple-system, "SF Pro Text", sans-serif;
+  font-size: 11.5px;
+  color: var(--cc-muted);
+  padding: 2px 4px;
+}
+
+.cc-usage-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+
+.cc-usage-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cc-usage-label {
+  font-family: -apple-system, "SF Pro Text", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--cc-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cc-usage-pct {
+  font-family: -apple-system, "SF Mono", "Menlo", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cc-blue);
+}
+
+.cc-usage-pct.cc-warn   { color: var(--cc-orange); }
+.cc-usage-pct.cc-danger { color: var(--cc-red); }
+
+.cc-usage-reset {
+  font-family: -apple-system, "SF Pro Text", sans-serif;
+  font-size: 10.5px;
+  color: var(--cc-muted);
+  opacity: 0.75;
+}
+
+.cc-usage-divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--cc-sep);
+  flex-shrink: 0;
+  margin: 2px 0;
+}
+
+/* ── Progress bars ──────────────────────────────────────────────────────── */
+.cc-bar {
+  position: relative;
+  width: 100%;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--cc-track);
+  overflow: hidden;
+}
+
+.cc-bar--usage {
+  height: 6px;
+}
+
+.cc-bar__fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: var(--cc-blue);
+  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background-color 0.4s ease;
+}
+
+.cc-bar__fill.cc-warn   { background: var(--cc-orange); }
+.cc-bar__fill.cc-danger { background: var(--cc-red); }
+.cc-bar__fill.cc-full   { border-radius: 999px; }
+
+/* ── Tooltip ────────────────────────────────────────────────────────────── */
+.cc-tooltip {
+  position: fixed;
+  z-index: 99999;
+  padding: 7px 10px;
+  background: var(--cc-surface);
+  border: 1px solid var(--cc-border);
+  border-radius: 10px;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  font-family: -apple-system, "SF Pro Text", sans-serif;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--cc-text);
+  white-space: pre-line;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08);
+  transition: opacity 0.15s ease;
+  max-width: 260px;
+}
+
+/* ── Utility ─────────────────────────────────────────────────────────────── */
+.cc-hidden { display: none !important; }
